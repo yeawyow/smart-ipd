@@ -20,12 +20,10 @@ const PostCard = ({ content }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {content.map((list, index) => (
-              <TableRow key={index}>
-                <TableCell>{list.first_name}</TableCell>
-                <TableCell>{list.email}</TableCell>
-              </TableRow>
-            ))}
+            <TableRow>
+              <TableCell>{content.id}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -40,7 +38,7 @@ function PostsList() {
     isError,
     error,
   } = useGetPostsQuery();
-  console.log(posts);
+
   let postContent;
   if (isLoading) {
     postContent = (
@@ -51,9 +49,7 @@ function PostsList() {
       </div>
     );
   } else if (isSuccess) {
-    postContent = posts[Object.keys(posts)].map((info) => {
-      console.log(info.title);
-    });
+    postContent = posts[Object.keys(posts)].map((info) => {});
   } else if (isError) {
     postContent = (
       <div className="alert alert-danger" role="alert">
